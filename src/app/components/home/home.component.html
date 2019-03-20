@@ -1,0 +1,40 @@
+<div class="header-image">
+  <img src="../../../assets/img/header-background.jpg" class="d-block w-100 h-50" alt="...">
+</div>
+
+<div class="search-panel">
+
+  <div class="airport">
+    <mat-form-field appearance="outline">
+      <mat-label>Airport Name</mat-label>
+      <input matInput placeholder="Airport Name" #query [formControl]="airportControl" [matAutocomplete]="autoAirport"
+        (keyup)="query.value.length > 2 ? [getUnsubscribed(), loadData(query.value)] : airNames = []">
+      <mat-icon matSuffix svgIcon="departure"></mat-icon>
+    </mat-form-field>
+
+    <mat-autocomplete autoActiveFirstOption #autoAirport="matAutocomplete">
+      <mat-option *ngIf="isLoading">Searching...</mat-option>
+      <mat-option *ngIf="query.value.length <= 2">Type more than 3 characters and wait a few second...</mat-option>
+      <mat-option *ngIf="!isLoading && query.value.length > 2 && airNames.length == 0 && !autoAirport.value">No Matches, try again! ;)</mat-option>
+      <mat-option *ngFor="let option of airNames" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+
+  <div class="iataCode">
+    <mat-form-field appearance="outline">
+      <mat-label>Iata Code</mat-label>
+      <input  #departure matInput placeholder="Iata Code">
+      <mat-icon matSuffix svgIcon="iata"></mat-icon>
+    </mat-form-field>
+  </div>
+
+  <button [disabled] = "departure.value.length !==3" class="btn btn-primary" (click)="[getUnsubscribed(), loadData(query.value, departure.value), clicked()]"> Search </button>
+
+</div>
+
+<div [ngClass]="currentClasses" role="alert">
+  {{currentMessage}}
+  <mat-progress-bar *ngIf="isLoading && isClicked && departure.value.length > 2" mode="buffer"></mat-progress-bar>
+</div>

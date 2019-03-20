@@ -1,0 +1,32 @@
+.search-panel {
+  width: 60%;
+  background-color: white;
+  margin-left: 20%;
+  padding: 1%;
+  padding-left: 10%;
+  display: flex;
+  margin-top: -50px;
+  position: absolute;
+  border-radius: 5px;
+}
+
+button {
+  height: 50px;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.iataCode {
+  margin-left: 10px;
+}
+
+.airports {
+  margin-left: 20px;
+}
+
+.results {
+  width: 80%;
+  margin-top: 50px;
+  margin-left: 10%;
+  text-align: center;
+}
