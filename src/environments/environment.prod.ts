@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_ENDPOINT : 'https://airport-backend.herokuapp.com/autocomplete'
+  API_ENDPOINT : 'https://airport-backend.herokuapp.com/airports/autocomplete'
 };
